@@ -1,0 +1,55 @@
+@import "styles/colors.scss";
+@import "./widget.screen.scss";
+@import "./widget.button.scss";
+
+.widget-device-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  background: linear-gradient(
+      rgba($color: $gray, $alpha: 0.9),
+      rgba($color: $gray, $alpha: 0.95)
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  border-radius: 3px;
+  border-top: 1px solid $gray-lighter;
+  border-image: linear-gradient(
+      to right,
+      $gray-lighter 40%,
+      rgba($color: $white, $alpha: 0.5) 75%,
+      $gray-lighter 95%
+    )
+    1;
+  box-shadow: 0px 0px 5px 2px $black;
+
+  .device-panel-top {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    .panel-buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}
+
+.light-on {
+  color: $cyan-soft;
+  filter: drop-shadow(0px 0px 4px rgba($color: $cyan-soft, $alpha: 0.5))
+    drop-shadow(0px 0px 8px rgba($color: $cyan-soft, $alpha: 0.2))
+    drop-shadow(0px 0px 8px rgba($color: $cyan-soft, $alpha: 0.3));
+  opacity: 1;
+  transition: all 0.6s linear;
+}
+.light-off {
+  color: transparent;
+  &.screen-measure,
+  path.cls-clock {
+    color: black;
+    fill: black;
+    opacity: 0.2;
+  }
+  transition: all 0.2s linear;
+}

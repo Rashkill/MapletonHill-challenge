@@ -1,0 +1,56 @@
+.panel-screen {
+  user-select: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 14px;
+  width: 200px;
+  height: 68px;
+  border-radius: 3px;
+  border-bottom: 3px solid $gray-lighter;
+  background: radial-gradient(
+    at bottom,
+    rgba($color: $white, $alpha: 0.02),
+    $black 80%
+  );
+
+  .clock-icon {
+    flex: 1;
+    &.ligth-on {
+      > path.cls-clock {
+        fill: $cyan-soft;
+      }
+    }
+  }
+
+  .screen-numbers {
+    flex: 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .digits {
+    font-family: "DS-Digital";
+    font-weight: bold;
+    font-size: 46px;
+
+    &.back {
+      position: absolute;
+      opacity: 0.15;
+    }
+    &.screen-measure {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      font-size: 22px;
+      font-weight: normal;
+      &.hours {
+        font-size: 18px;
+      }
+    }
+    p {
+      margin: 0;
+    }
+  }
+}

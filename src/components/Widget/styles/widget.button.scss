@@ -1,0 +1,78 @@
+.button-wrapper {
+  display: flex;
+  gap: 3px;
+  background-color: $gray;
+  padding: 3px;
+  border-radius: 2px;
+  border-bottom: 2px solid $gray-lighter;
+  box-shadow: inset 0 4px 8px -4px black;
+  > button {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    appearance: none;
+    background-color: $gray-light;
+    padding: 6px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 2px;
+    border-top: 1px solid $gray-lighter;
+    border-image: linear-gradient(
+        to right,
+        $gray-lighter,
+        rgba($color: $white, $alpha: 0.3) 50%,
+        $gray-lighter
+      )
+      1;
+    box-shadow: 0 2px 3px $black;
+    transition: all 0.1s ease-in-out;
+    &:active {
+      border-top: 3px solid $black;
+      border-image: none;
+      box-shadow: inset 0px 2px 4px $black;
+      margin-bottom: -2px;
+      transition: all 0.1s linear;
+    }
+    > .led {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $gray;
+      &::before {
+        content: "-";
+        color: transparent;
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        border-radius: 50%;
+        background-color: $cyan-soft;
+        margin: 15% -35%;
+      }
+      &.light-off {
+        &::before {
+          background: linear-gradient($gray, $gray-lighter 20%, $gray);
+        }
+      }
+    }
+    > p {
+      flex: 2;
+      margin: 0;
+      color: $white;
+      font-size: 8px;
+      font-weight: bold;
+    }
+    .arrow-icon {
+      width: 10px;
+      height: 10px;
+      &.down {
+        transform: rotate(180deg);
+      }
+      > path.cls-clock {
+        fill: $white;
+      }
+    }
+  }
+}
