@@ -22,12 +22,16 @@ const WidgetScreen: React.FC<WidgetScreenProps> = ({
           <p>{String(numbers).slice(-8, 4)}</p>
         </div>
       </div>
-      <div
-        className={`digits light-${power ? "on" : "off"} screen-measure ${
-          hours ? "hours" : "minutes"
-        }`}
-      >
-        <p>{hours ? "hrs" : "min"}</p>
+      <div className="screen-measure">
+        <div className="digits back">
+          <p>ooo</p>
+        </div>
+        <div className="digits back">
+          <p>xxx</p>
+        </div>
+        <div className={`digits light-${power ? "on" : "off"}`}>
+          <p>{hours ? "hrs" : "min"}</p>
+        </div>
       </div>
     </div>
   );

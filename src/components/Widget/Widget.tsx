@@ -5,6 +5,7 @@ import UpArrow from "assets/UpArrow";
 
 const Widget = () => {
   const [powered, setPowered] = useState(false);
+  const [hours, setHours] = useState(false);
   const [numbers, setNumbers] = useState(100);
 
   const handleIncreaseNumber = () => {
@@ -16,8 +17,8 @@ const Widget = () => {
 
   return (
     <div className="widget-device-container">
-      <div className="device-panel-top">
-        <WidgetScreen numbers={numbers} power={powered} />
+      <div className="device-panel">
+        <WidgetScreen numbers={numbers} power={powered} hours={hours} />
         <div className="panel-buttons">
           <div className="buttons-top">
             <div className="button-wrapper">
@@ -31,15 +32,23 @@ const Widget = () => {
           </div>
           <div className="button-wrapper">
             <button className="power-btn" onClick={() => setPowered(!powered)}>
-              <div className={`led light-${powered ? "on" : "off"}`} />{" "}
+              <div className={`led light-${powered ? "on" : "off"}`} />
               <p>PWR</p>
             </button>
           </div>
         </div>
       </div>
-      <div className="device-panel-bottom">
+      <div className="device-panel">
         <div className="panel-measure-toggle">
-          MIN <div className="toggle"></div> HRS
+          <p>min</p>
+          <label className="switch">
+            <input
+              type="checkbox"
+              onChange={(e) => setHours(e.target.checked)}
+            />
+            <span className="slider"></span>
+          </label>
+          <p>hrs</p>
         </div>
         <div className="panel-timer-slide">
           <div className="slider"></div>

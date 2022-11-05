@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Digital 7";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Digital 7 Monospaced"), url("DIGITAL-7.ttf");
+}
+@font-face {
+  font-family: "Digital 7";
+  font-style: italic;
+  font-weight: normal;
+  src: local("Digital 7 Italic Monospaced"), url("DIGITAL-7I.ttf");
+}

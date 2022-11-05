@@ -1,0 +1,52 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  aspect-ratio: 1.75;
+  background-color: $gray-light;
+  border-radius: 10px;
+  border-bottom: 2px solid $gray-lighter;
+  margin-bottom: -4px;
+  box-shadow: inset 0px 0px 5px 2px $black;
+  > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  > .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 75%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: conic-gradient(
+        $gray,
+        $white,
+        $gray-light,
+        $white,
+        $gray,
+        $white,
+        $gray-light,
+        $gray
+      );
+      filter: contrast(20%) brightness(180%) drop-shadow(0px 1px 2px black);
+      margin: 3px 9%;
+      transition: 0.4s;
+    }
+  }
+  &:has(input:focus-visible) {
+    outline: 2px solid white;
+  }
+
+  input:checked + .slider:before {
+    margin: 3px 49%;
+  }
+}
