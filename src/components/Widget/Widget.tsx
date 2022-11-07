@@ -51,7 +51,11 @@ const Widget = () => {
           <p>hrs</p>
         </div>
         <div className="panel-timer-slide">
-          <div className="slider"></div>
+          <div className="range-slider">
+            <div className="slider-track" />
+            <div className="slider-progress" />
+            <input type="range" min="1" max="100" className="slider" />
+          </div>
           <div className="slider-bars"></div>
         </div>
       </div>
