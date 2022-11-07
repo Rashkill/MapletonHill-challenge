@@ -1,19 +1,43 @@
 import WidgetScreen from "./sub-components/WidgetScreen";
 import "./styles/widget.scss";
-import { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import UpArrow from "assets/UpArrow";
+import WidgetRangeSlider from "./sub-components/WidgetRangeSlider";
 
 const Widget = () => {
   const [powered, setPowered] = useState(false);
   const [hours, setHours] = useState(false);
-  const [numbers, setNumbers] = useState(100);
+  const [numbers, setNumbers] = useState(0);
+
+  const minInterval = useRef<NodeJS.Timer | null>(null);
+  const hrsInterval = useRef<NodeJS.Timer | null>(null);
 
   const handleIncreaseNumber = () => {
     setNumbers((prev) => (powered ? prev + 1 : prev));
   };
-  const handleDecreaseNumber = () => {
-    setNumbers((prev) => (powered ? prev - 1 : prev));
-  };
+  const handleDecreaseNumber = useCallback(() => {
+    setNumbers((prev) => (powered && prev > 0 ? prev - 1 : prev));
+  }, [powered]);
+
+  useEffect(() => {
+    if (powered) {
+      if (!hours) {
+        minInterval.current = setInterval(() => {
+          handleDecreaseNumber();
+        }, 100);
+      }
+      if (hours) {
+        hrsInterval.current = setInterval(() => {
+          handleDecreaseNumber();
+        }, 1000);
+      }
+    }
+
+    return () => {
+      if (minInterval.current) clearInterval(minInterval.current);
+      if (hrsInterval.current) clearInterval(hrsInterval.current);
+    };
+  }, [powered, hours, handleDecreaseNumber]);
 
   return (
     <div className="widget-device-container">
@@ -50,14 +74,7 @@ const Widget = () => {
           </label>
           <p>hrs</p>
         </div>
-        <div className="panel-timer-slide">
-          <div className="range-slider">
-            <div className="slider-track" />
-            <div className="slider-progress" />
-            <input type="range" min="1" max="100" className="slider" />
-          </div>
-          <div className="slider-bars"></div>
-        </div>
+        <WidgetRangeSlider value={numbers} onChange={setNumbers} />
       </div>
     </div>
   );
