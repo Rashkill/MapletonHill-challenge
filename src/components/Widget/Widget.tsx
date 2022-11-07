@@ -24,12 +24,12 @@ const Widget = () => {
       if (!hours) {
         minInterval.current = setInterval(() => {
           handleDecreaseNumber();
-        }, 100);
+        }, 60000);
       }
       if (hours) {
         hrsInterval.current = setInterval(() => {
           handleDecreaseNumber();
-        }, 1000);
+        }, 3600000);
       }
     }
 

@@ -11,6 +11,13 @@ const WidgetScreen: React.FC<WidgetScreenProps> = ({
   power,
   hours,
 }) => {
+  const getHrs = (minutes: number) => {
+    const hrs = minutes / 60;
+    const roundedHrs = Math.floor(hrs);
+    const mins = (hrs - roundedHrs) * 60;
+    const roundedMins = Math.round(mins);
+    return `${roundedHrs}.${roundedMins}`;
+  };
   return (
     <div className="panel-screen">
       <ClockSVG className={`digits light-${power ? "on" : "off"} clock-icon`} />
@@ -19,7 +26,7 @@ const WidgetScreen: React.FC<WidgetScreenProps> = ({
           <p>8888</p>
         </div>
         <div className={`digits light-${power ? "on" : "off"} front`}>
-          <p>{String(numbers).slice(-8, 4)}</p>
+          <p>{String(hours ? getHrs(numbers) : numbers).slice(-8, 4)}</p>
         </div>
       </div>
       <div className="screen-measure">
